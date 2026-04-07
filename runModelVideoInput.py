@@ -13,8 +13,8 @@ from datasets import S2T_Dataset
 
 def extract_keypoints_from_video(video_path, output_test_path):
     # Load HRNet model
-    config_file = './Khaosattongthe/td-hm_hrnet-w48_dark-8xb32-210e_coco-wholebody-384x288.py'
-    checkpoint_file = './Khaosattongthe/hrnet_w48_coco_wholebody_384x288_dark-f5726563_20200918.pth'
+    config_file = './td-hm_hrnet-w48_dark-8xb32-210e_coco-wholebody-384x288.py'
+    checkpoint_file = './hrnet_w48_coco_wholebody_384x288_dark-f5726563_20200918.pth'
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = init_model(config_file, checkpoint_file, device=device)
 
@@ -69,7 +69,7 @@ def run_model_on_test(config, test_index=0):
     sample_input = test_data.collate_fn([sample])
 
     model = SignLanguageModel(cfg=config, args=None)
-    checkpoint_path = './MSKA-main/pretrained_models/Phoenix-2014T_SLR/best.pth'
+    checkpoint_path = './pretrained_models/Phoenix-2014T_SLR/best.pth'
     checkpoint = torch.load(checkpoint_path, map_location=device)
     model.load_state_dict(checkpoint['model'], strict=True)
     model.to(device)
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     print(f"Đang xử lý video: {video_path}")
 
     # Cấu hình
-    config_path = './Khaosattongthe/configs/phoenix-2014t_s2g.yaml'
+    config_path = './configs/phoenix-2014t_s2g.yaml'
     test_file = 'temp_video.test'
 
     # Xử lý video
