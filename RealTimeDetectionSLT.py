@@ -16,8 +16,8 @@ def extract_keypoints_from_video(video_path, output_test_path):
     Trích xuất keypoints từ video sử dụng HRNet model
     """
     # Load HRNet model
-    config_file = './Khaosattongthe/td-hm_hrnet-w48_dark-8xb32-210e_coco-wholebody-384x288.py'
-    checkpoint_file = './Khaosattongthe/hrnet_w48_coco_wholebody_384x288_dark-f5726563_20200918.pth'
+    config_file = './td-hm_hrnet-w48_dark-8xb32-210e_coco-wholebody-384x288.py'
+    checkpoint_file = './hrnet_w48_coco_wholebody_384x288_dark-f5726563_20200918.pth'
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     hrnet_model = init_model(config_file, checkpoint_file, device=device)
 
@@ -85,7 +85,7 @@ def run_slt_model_on_test(config, test_index=0):
     # Khởi tạo mô hình SLT 
     model = SignLanguageModel(cfg=config, args=None)
     
-    checkpoint_path = './Khaosattongthe/pretrained_models/best.pth'
+    checkpoint_path = './pretrained_models/best.pth'
     if not Path(checkpoint_path).exists():
         print(f"Lỗi: Không tìm thấy file trọng số tại {checkpoint_path}")
         return None, None
@@ -144,7 +144,7 @@ def display_results(gloss_pred, text_pred, frame_index):
 
 # Loop Webcam - Ghi 4s - Nhận Diện SLT 
 if __name__ == "__main__":
-    config_path = './Khaosattongthe/configs/phoenix-2014t_s2t.yaml'
+    config_path = './configs/phoenix-2014t_s2t.yaml'
     test_file = 'temp_webcam.test'
     cam_index = 0
     
